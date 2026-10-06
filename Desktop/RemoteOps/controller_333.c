@@ -192,8 +192,8 @@ int main(int argc, char *argv[]) {
             continue;
         }
 
-        char cmd[MAX_LINE];
-        snprintf(cmd, sizeof(cmd), "%s\n", line);
+        char cmd[MAX_LINE + 8];
+        snprintf(cmd, sizeof(cmd), "%.4090s\n", line);
         send_all(tcp_fd, cmd, strlen(cmd));
         if (read_line(tcp_fd, resp, sizeof(resp)) > 0) printf("%s\n", resp);
         if (strcmp(line, "QUIT") == 0) break;
